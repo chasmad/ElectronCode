@@ -26,8 +26,8 @@ class TimerTray extends Tray {
                 height,
                 width
             });
+            this.mainWindow.show();
         }
-        this.mainWindow.show();
     }
 
     onRightClick() {
