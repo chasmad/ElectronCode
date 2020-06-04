@@ -4,7 +4,9 @@ const { Tray } = Electron;
 class TimerTray extends Tray {
     constructor(iconPath, mainWindow) {
         super(iconPath);
+
         this.mainWindow = mainWindow;
+        this.setToolTip('Timer App');
         this.on('click', this.onClick.bind(this));
     }
 
