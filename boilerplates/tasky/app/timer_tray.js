@@ -15,7 +15,6 @@ class TimerTray extends Tray {
         const { x, y } = bounds;
         const { height, width } = this.mainWindow.getBounds();
 
-        console.log(bounds.x, bounds.y)
         if (this.mainWindow.isVisible()) {
             this.mainWindow.hide();
         } else {

@@ -5,7 +5,8 @@ class MainWindow extends BrowserWindow {
     constructor(url) {
         super({
             webPreferences: {
-                nodeIntegration: true
+                nodeIntegration: true,
+                backgroundThrottling: false
             },
             height: 500,
             width: 300,
