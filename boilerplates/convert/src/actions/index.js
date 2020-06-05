@@ -1,9 +1,13 @@
 import { ADD_VIDEO, ADD_VIDEOS, REMOVE_VIDEO, REMOVE_ALL_VIDEOS, VIDEO_PROGRESS, VIDEO_COMPLETE } from "./types";
+import { ipcRenderer } from "electron";
 
 // TODO: Communicate to MainWindow process that videos
 // have been added and are pending conversion
 export const addVideos = videos => dispatch => {
-
+  ipcRenderer.send('videos:added', videos);
+  ipcRenderer.on('metadata:complete', (event, videosWithData) => {
+    dispatch({ type: ADD_VIDEOS, payload: videosWithData });
+  });
 };
 
 
@@ -11,8 +15,9 @@ export const addVideos = videos => dispatch => {
 // to start converting videos.  Also listen for feedback
 // from the MainWindow regarding the current state of
 // conversion.
-export const convertVideos = () => (dispatch, getState) => {
-
+export const convertVideos = videos => dispatch => {
+  console.log('here')
+    ipcRenderer.send("conversion:start", videos);
 };
 
 // TODO: Open the folder that the newly created video
